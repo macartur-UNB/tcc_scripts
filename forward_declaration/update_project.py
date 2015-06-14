@@ -19,6 +19,7 @@ def update(_dir):
     factor = random.choice(factors)
     n = int(len(includes)*factor)
     files = random.sample(includes,n)
+    print(str(files))
 
     for f in files:
         command = "touch {}".format(f)
@@ -34,10 +35,10 @@ if __name__ == "__main__":
     _dir = "."
     if len(sys.argv) > 1:
         _dir = sys.argv[1]
-
+    
     for i in range(10):
         update(_dir)
-        command = "time make 2> /dev/null"
-        os.system(command)
+        command = "time make > /dev/null"
+        text = os.system(command)
 
 

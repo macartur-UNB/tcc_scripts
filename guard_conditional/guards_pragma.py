@@ -7,7 +7,7 @@ number_of_includes = 3
 folder =  "./guards-pragma/"
 
 include_directory = folder+"include"
-include_path = folder+"include/{0}.h"
+include_path = folder+"include/{0}.hpp"
 path_main_file = folder+"main.cpp"
 
 content_of_include = """#ifndef H{0}_H
@@ -18,7 +18,7 @@ const int int{0} = {0};
 """
 
 end_of_main_file = "int main() {\n}"
-header = """#include "{0}.h"\n"""
+header = """#include "{0}.hpp"\n"""
 
 def verify_directory(path_name):
     if not path.exists(path_name):

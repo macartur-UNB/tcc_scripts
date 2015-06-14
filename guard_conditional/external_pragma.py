@@ -4,7 +4,7 @@ from os import path
 number_of_files = 10**4
 number_of_includes = 3
 
-folder =  "./external/"
+folder =  "./external_pragma/"
 
 include_directory = folder+"include"
 include_path = folder+"include/{0}.h"
