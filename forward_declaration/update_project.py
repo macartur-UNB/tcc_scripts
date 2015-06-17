@@ -40,5 +40,3 @@ if __name__ == "__main__":
         update(_dir)
         command = "time make > /dev/null"
         text = os.system(command)
-
-

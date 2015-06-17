@@ -1,5 +1,6 @@
 from os import mkdir
 from os import path
+from os import system
 
 number_of_files = 10**4
 number_of_includes = 3
@@ -49,12 +50,18 @@ def create_main_file():
 
     #close main.cpp
     main.close()
+def copy_util_files():                                                           
+    command = "cp util/* "                                                       
+    command += folder                                                            
+    system(command)                                                              
+                      
 
 def main():
     verify_directory(folder)
     verify_directory(include_directory)
     create_includes()
     create_main_file()
+    copy_util_files()
 
 if __name__ == "__main__":
     main()

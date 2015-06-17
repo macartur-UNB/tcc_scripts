@@ -5,21 +5,22 @@ from os import system
 number_of_files = 10**4
 number_of_includes = 3
 
-folder =  "./guards-pragma/"
+folder =  "./redundant/"
 
 include_directory = folder+"include"
-include_path = folder+"include/{0}.hpp"
+include_path = folder+"include/{0}.h"
 path_main_file = folder+"main.cpp"
 
 content_of_include = """#ifndef H{0}_H
 #define H{0}_H
-#pragma once
 const int int{0} = {0};
+#endif"""
+end_of_main_file = "int main() {\n}\n"
+header = """#ifndef H{0}_H
+#define H{0}_H
+#include "{0}.h"
 #endif
 """
-
-end_of_main_file = "int main() {\n}"
-header = """#include "{0}.hpp"\n"""
 
 def verify_directory(path_name):
     if not path.exists(path_name):
@@ -47,6 +48,7 @@ def create_main_file():
         for x in range(0,number_of_includes):
             content = header.format(str(number))
             main.write(content)
+        main.write("\n")
 
     #write end of file
     main.write(end_of_main_file)
