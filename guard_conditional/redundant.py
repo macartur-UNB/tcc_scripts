@@ -8,17 +8,17 @@ number_of_includes = 3
 folder =  "./redundant/"
 
 include_directory = folder+"include"
-include_path = folder+"include/{0}.h"
+include_path = folder+"include/{0}.hpp"
 path_main_file = folder+"main.cpp"
 
-content_of_include = """#ifndef H{0}_H
-#define H{0}_H
+content_of_include = """#ifndef H{0}_HPP
+#define H{0}_HPP
 const int int{0} = {0};
 #endif"""
 end_of_main_file = "int main() {\n}\n"
-header = """#ifndef H{0}_H
-#define H{0}_H
-#include "{0}.h"
+header = """#ifndef H{0}_HPP
+#define H{0}_HPP
+#include "{0}.hpp"
 #endif
 """
 
