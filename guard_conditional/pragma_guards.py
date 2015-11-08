@@ -6,7 +6,7 @@ from os import system
 number_of_files = 10**4
 number_of_includes = 3
 
-folder =  "./pragma-guards/"
+folder =  "./pragma_guards/"
 
 include_directory = folder+"include"
 include_path = folder+"include/{0}.hpp"
@@ -20,7 +20,7 @@ const int int{0} = {0};
 """
 
 end_of_main_file = "int main() {\n}"
-header = """#include "{0}.h"\n"""
+header = """#include "{0}.hpp"\n"""
 
 def verify_directory(path_name):
     if not path.exists(path_name):
@@ -38,7 +38,7 @@ def create_includes():
         path = include_path.format(str(number))
         content = content_of_include.format(str(number))
         create_include_file(path,content)
-    
+
 def create_main_file():
     #open main.cpp
     main = open(path_main_file,"w+")
@@ -54,10 +54,10 @@ def create_main_file():
 
     #close main.cpp
     main.close()
-def copy_util_files():                                                           
-    command = "cp util/* "                                                       
-    command += folder                                                            
-    system(command)                                                              
+def copy_util_files():
+    command = "cp util/* "
+    command += folder
+    system(command)
 
 def main():
     verify_directory(folder)
