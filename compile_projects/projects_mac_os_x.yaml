@@ -1,213 +1,229 @@
 iRecoveryplusplus:
     directory:          iRecoveryplusplus
     makefile:           .
-    debug:              False 
+    debug:              False
     branchs:
-       - name:          master 
-         description:   master 
-         compile:       make linux 
+       - name:          master
+         description:   master
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          forward_declaration 
-         description:   forward_declaration 
-         compile:       make linux 
+       - name:          forward_declaration
+         description:   forward_declaration
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          pimpl 
-         description:   pimpl 
-         compile:       make linux 
+       - name:          pimpl
+         description:   pimpl
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          pragma_once 
-         description:   pragma_once 
-         compile:       make linux 
+       - name:          pragma_once
+         description:   pragma_once
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
-         description:   gold 
+       - name:          master
+         description:   gold
          compile:       make linux CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
-         description:   gcc -O  
-         compile:       make linux 
+       - name:          master
+         description:   gcc -Os
+         compile:       make linux
+         clean:         rm -rf bin/*
+         pre-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Os /g' '{}' \;
+         pos-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
+       - name:          master
+         description:   gcc -O
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O2 only master 
-         compile:       make linux 
+       - name:          master
+         description:   gcc -O2 only master
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
-         description:   gcc -Ofast 
-         compile:       make linux 
+       - name:          master
+         description:   gcc -Ofast
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
             - command:  find *  -type f -exec sed -i '' 's/-O.\{0,1\} /-Ofast /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-Ofast /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O3 
-         compile:       make linux 
+       - name:          master
+         description:   gcc -O3
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O3 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -Og 
-         compile:       make linux 
+       - name:          master
+         description:   gcc -Og
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Og /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
+       - name:          master
          description:   gcc -O0
-         compile:       make linux 
+         compile:       make linux
          clean:         rm -rf bin/*
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O0 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   make ccache 
+       - name:          master
+         description:   make ccache
          compile:       make linux CC="ccache gcc" CXX="ccache g++"
          clean:         rm -rf bin/*
          pre-command:
-            - command:  ccache -C; ccache -c 
+            - command:  ccache -C; ccache -c
          pos-command:
-            - command:  ccache -C; ccache -c 
-       - name:          master 
+            - command:  ccache -C; ccache -c
+       - name:          master
          description:   make -j 2
-         compile:       make linux -j 2 
+         compile:       make linux -j 2
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
+       - name:          master
          description:   make -j 4
          compile:       make linux -j 4
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
+       - name:          master
          description:   make -j 6
          compile:       make linux -j 6
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
+       - name:          master
          description:   make -j 8
          compile:       make linux -j 8
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
-       - name:          master 
+       - name:          master
          description:   make -j 10
          compile:       make linux -j 10
          clean:         rm -rf bin/*
          pre-command:
          pos-command:
 sudoku:
-   directory:          sudoku 
+   directory:          sudoku
    makefile:           ./src/
    debug:              False
    branchs:
-      - name:          master 
-        description:   master 
-        compile:       make 
-        clean:         make clean 
+      - name:          master
+        description:   master
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          forward_declaration 
-        description:   forward_declaration 
-        compile:       make 
-        clean:         make clean 
+      - name:          forward_declaration
+        description:   forward_declaration
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          pimpl 
-        description:   pimpl 
-        compile:       make 
-        clean:         make clean 
+      - name:          pimpl
+        description:   pimpl
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          pragma_once 
-        description:   pragma_once 
-        compile:       make 
-        clean:         make clean 
+      - name:          pragma_once
+        description:   pragma_once
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          master 
-        description:   gold 
+      - name:          master
+        description:   gold
         compile:       make  CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
-        clean:         make clean 
+        clean:         make clean
         pre-command:
         pos-command:
-       - name:          master 
-         description:   gcc -O  
+       - name:          master
+         description:   gcc -O
          compile:       make
-         clean:         make clean 
+         clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O2 only master 
+       - name:          master
+         description:   gcc -Os
          compile:       make
-         clean:         make clean 
+         clean:         make clean
+         pre-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Os /g' '{}' \;
+         pos-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
+       - name:          master
+         description:   gcc -O2 only master
+         compile:       make
+         clean:         make clean
          pre-command:
          pos-command:
-       - name:          master 
-         description:   gcc -Ofast 
+       - name:          master
+         description:   gcc -Ofast
          compile:       make
-         clean:         make clean 
+         clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Ofast /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-Ofast /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O3 
+       - name:          master
+         description:   gcc -O3
          compile:       make
-         clean:         make clean 
+         clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O3 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -Og 
+       - name:          master
+         description:   gcc -Og
          compile:       make
-         clean:         make clean 
+         clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Og /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
+       - name:          master
          description:   gcc -O0
-         compile:       make 
-         clean:         make clean 
+         compile:       make
+         clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O0 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   make ccache 
+       - name:          master
+         description:   make ccache
          compile:       make CC='ccache gcc' CXX='ccache g++'
-         clean:         make clean 
+         clean:         make clean
          pre-command:
             - command:  ccache -C; ccache -c
          pos-command:
        - name:          master
          description:   make -j 2
-         compile:       make -j 2 
+         compile:       make -j 2
          clean:         make clean
          pre-command:
          pos-command:
@@ -237,89 +253,94 @@ sudoku:
          pos-command:
 
 aseprite:
-   directory:          aseprite 
+   directory:          aseprite
    makefile:           ./build/
    debug:              False
    branchs:
-      - name:          master 
-        description:   master 
-        compile:       make 
-        clean:         make clean 
+      - name:          master
+        description:   master
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          pragma_once 
-        description:   pragma_once 
-        compile:       make 
-        clean:         make clean 
+      - name:          pragma_once
+        description:   pragma_once
+        compile:       make
+        clean:         make clean
         pre-command:
         pos-command:
-       - name:          master 
-         description:   gcc -O  
+       - name:          master
+         description:   gcc -O
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O2 only master 
+       - name:          master
+         description:   gcc -Os
+         compile:       make
+         clean:         make clean
+         pre-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Os /g' '{}' \;
+         pos-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
+       - name:          master
+         description:   gcc -O2 only master
          compile:       make
          clean:         make clean
          pre-command:
          pos-command:
-      - name:          master 
-        description:   gold 
+      - name:          master
+        description:   gold
         compile:       make  CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
-        clean:         make clean 
+        clean:         make clean
         pre-command:
         pos-command:
-       - name:          master 
-         description:   gcc -Ofast 
+       - name:          master
+         description:   gcc -Ofast
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Ofast /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-Ofast /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O3 
+       - name:          master
+         description:   gcc -O3
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O3 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -Og 
+       - name:          master
+         description:   gcc -Og
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Og /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
+       - name:          master
          description:   gcc -O0
-         compile:       make 
+         compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O0 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   make ccache 
-         compile:       make 
+       - name:          master
+         description:   make ccache
+         compile:       make
          clean:         make clean
          pre-command:
-            - command:   CC="gcc" CXX="g++"  cmake .. -G "Unix Makefiles"  -DCMAKE_OSX_ARCHITECTURES:STRING=i386 \
-                         -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk \
-                         -DCMAKE_CXX_COMPILER="ccache" -DCMAKE_CXX_COMPILER_ARG1="g++"  \
-                         -DCMAKE_C_COMPILER="ccache" -DCMAKE_C_COMPILER_ARG1="gcc"
+            - command:   CC="gcc" CXX="g++"  cmake .. -G "Unix Makefiles"  -DCMAKE_OSX_ARCHITECTURES:STRING=i386 -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk -DCMAKE_CXX_COMPILER="ccache" -DCMAKE_CXX_COMPILER_ARG1="g++" -DCMAKE_C_COMPILER="ccache" -DCMAKE_C_COMPILER_ARG1="gcc"
             - command:  ccache -C; ccache -c
          pos-command:
             - command:  ccache -C; ccache -c
        - name:          master
          description:   make -j 2
-         compile:       make -j 2 
+         compile:       make -j 2
          clean:         make clean
          pre-command:
          pos-command:
@@ -347,79 +368,87 @@ aseprite:
          clean:         make clean
          pre-command:
          pos-command:
-pencil: 
-   directory:          pencil 
+pencil:
+   directory:          pencil
    makefile:           .
    compile:            make
    clean:              make clean
    debug:              False
    branchs:
-      - name:          master 
-        description:   master 
+      - name:          master
+        description:   master
         compile:       make
         clean:         make clean
         pre-command:
         pos-command:
-      - name:          pragma_once 
+      - name:          pragma_once
         description:   pragma_once
         compile:       make
         clean:         make clean
         pre-command:
         pos-command:
-       - name:          master 
-         description:   gcc -O  
+       - name:          master
+         description:   gcc -O
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O2 only master 
+       - name:          master
+         description:   gcc -O2
+         compile:       make
+         clean:         make clean
+         pre-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Os/g' '{}' \;
+         pos-command:
+            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
+       - name:          master
+         description:   gcc -O2 only master
          compile:       make
          clean:         make clean
          pre-command:
          pos-command:
-      - name:          master 
-        description:   gold 
+      - name:          master
+        description:   gold
         compile:       make  CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
-        clean:         make clean 
+        clean:         make clean
         pre-command:
         pos-command:
-       - name:          master 
-         description:   gcc -Ofast 
+       - name:          master
+         description:   gcc -Ofast
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Ofast /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-Ofast /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -O3 
+       - name:          master
+         description:   gcc -O3
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O3 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   gcc -Og 
+       - name:          master
+         description:   gcc -Og
          compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Og /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
+       - name:          master
          description:   gcc -O0
-         compile:       make 
+         compile:       make
          clean:         make clean
          pre-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O0 /g' '{}' \;
          pos-command:
             - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-       - name:          master 
-         description:   make ccache 
+       - name:          master
+         description:   make ccache
          compile:       make CC='ccache gcc' CXX='ccache g++'
          clean:         make clean
          pre-command:
@@ -428,7 +457,7 @@ pencil:
             - command:  ccache -C; ccache -c
        - name:          master
          description:   make -j 2
-         compile:       make -j 2 
+         compile:       make -j 2
          clean:         make clean
          pre-command:
          pos-command:
@@ -457,73 +486,81 @@ pencil:
          pre-command:
          pos-command:
 qcad:
-   directory:          qcad 
+   directory:          qcad
    makefile:           .
    debug:              False
    branchs:
-      - name:          master 
-        description:   gcc -O  
+      - name:          master
+        description:   gcc -O
         compile:       make
         clean:         make clean
         pre-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O /g' '{}' \;
         pos-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-      - name:          master 
-        description:   gcc -O2 only master 
+      - name:          master
+        description:   gcc -O2
+        compile:       make
+        clean:         make clean
+        pre-command:
+           - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Os /g' '{}' \;
+        pos-command:
+           - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
+      - name:          master
+        description:   gcc -O2 only master
         compile:       make
         clean:         make clean
         pre-command:
         pos-command:
-      - name:          master 
-        description:   gold 
+      - name:          master
+        description:   gold
         compile:       make  CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
-        clean:         make clean 
+        clean:         make clean
         pre-command:
         pos-command:
-      - name:          master 
-        description:   gcc -Ofast 
+      - name:          master
+        description:   gcc -Ofast
         compile:       make
         clean:         make clean
         pre-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Ofast /g' '{}' \;
         pos-command:
            - command:  find . -type f -exec sed -i '' 's/-Ofast /-O2 /g' '{}' \;
-      - name:          master 
-        description:   gcc -O3 
+      - name:          master
+        description:   gcc -O3
         compile:       make
         clean:         make clean
         pre-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O3 /g' '{}' \;
         pos-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-      - name:          master 
-        description:   gcc -Og 
+      - name:          master
+        description:   gcc -Og
         compile:       make
         clean:         make clean
         pre-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-Og /g' '{}' \;
         pos-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-      - name:          master 
+      - name:          master
         description:   gcc -O0
-        compile:       make 
+        compile:       make
         clean:         make clean
         pre-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O0 /g' '{}' \;
         pos-command:
            - command:  find . -type f -exec sed -i '' 's/-O.\{0,1\} /-O2 /g' '{}' \;
-      - name:          master 
-        description:   make ccache 
+      - name:          master
+        description:   make ccache
         compile:       make CC='ccache gcc' CXX='ccache g++'
-        clean:         make clean 
+        clean:         make clean
         pre-command:
            - command:  ccache -C; ccache -c
         pos-command:
            - command:  ccache -C; ccache -c
       - name:          master
         description:   make -j 2
-        compile:       make -j 2 
+        compile:       make -j 2
         clean:         make clean
         pre-command:
         pos-command:
