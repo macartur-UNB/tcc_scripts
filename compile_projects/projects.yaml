@@ -278,7 +278,11 @@ aseprite:
         compile:       make  CC="gcc -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"
         clean:         make clean
         pre-command:
+            - command:  rm -rf *
+            - command:  CC="gcc  -Wl,-fuse-ld=gold" CXX="g++ -Wl,-fuse-ld=gold"  cmake .. -G "Unix Makefiles"  -DCMAKE_OSX_ARCHITECTURES:STRING=i386  -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk
         pos-command:
+            - command:  rm -rf *
+            - command: cmake .. -G "Unix Makefiles"  -DCMAKE_OSX_ARCHITECTURES:STRING=i386  -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk
        - name:          master
          description:   gcc -Os
          compile:       make
@@ -340,10 +344,12 @@ aseprite:
          compile:       make
          clean:         make clean
          pre-command:
+            - command:  rm -rf *
             - command:   CC="gcc" CXX="g++"  cmake .. -G "Unix Makefiles"  -DCMAKE_OSX_ARCHITECTURES:STRING=i386 -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk -DCMAKE_CXX_COMPILER="ccache" -DCMAKE_CXX_COMPILER_ARG1="g++" -DCMAKE_C_COMPILER="ccache" -DCMAKE_C_COMPILER_ARG1="gcc"
             - command:  ccache -C; ccache -c
          pos-command:
             - command:  ccache -C; ccache -c
+            - command:  cmake .. -G "Unix Makefiles" -DCMAKE_OSX_ARCHITECTURES:STRING=i386 -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.4 -DCMAKE_OSX_SYSROOT:STRING=/SDKs/MacOSX10.4u.sdk
        - name:          master
          description:   make -j 2
          compile:       make -j 2
